@@ -53,6 +53,22 @@ class SampleTest < Test::Unit::TestCase
     assert_equal('UTF-8', formCharset, 'The Form Charset is OK')
   end
 
+  def test_search_five
+    # Input text into the search box
+    hnl = @driver.find_elements(:class, 'header__nav-link')
+
+    hnl.each do |headerlink|
+      puts headerlink.text
+    end
+
+    assert_equal('NEWS', hnl[0].text, 'Match header text')
+    assert_equal('GEMS', hnl[1].text, 'Match header text')
+    assert_equal('GUIDES', hnl[2].text, 'Match header text')
+    assert_equal('CONTRIBUTE', hnl[3].text, 'Match header text')
+    assert_equal('SIGN IN', hnl[4].text, 'Match header text')
+    assert_equal('SIGN UP', hnl[5].text, 'Match header text')
+  end
+
   def teardown
     # Exit test
     @driver.quit
